@@ -5,4 +5,8 @@
     <div class="title m-b-md">
         Inscription
     </div>
+
+    <form class="" action="">
+
+    </form>
 @endsection

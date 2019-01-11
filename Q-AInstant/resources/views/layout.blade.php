@@ -84,6 +84,8 @@
         <div class="links">
             <a href="/">Index</a>
             <a href="/inscription">Subscribe</a>
+            <a href="/login">Connection</a>
+            <a href="/register">Inscription</a>
 
 
         </div>
