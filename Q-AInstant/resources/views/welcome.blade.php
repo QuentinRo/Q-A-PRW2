@@ -1,9 +1,10 @@
-@extends('layout')
-
+@extends('layouts.app')
 @section('content')
 <div class="content">
     <div class="title m-b-md">
-        Laravel
+        Welcomepage
     </div>
+
+</div>
 
 @endsection
