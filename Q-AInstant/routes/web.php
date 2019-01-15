@@ -33,7 +33,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Auth::routes();
 //Route::get('/login', 'Auth\LoginController@showLoginForm');
 
-// name the root to use it
+
+Route::get('/app', function (){
+    return view('app');
+});
+
 Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 
 Route::get('/register', [ 'as' => 'register', 'uses' => 'Auth\RegisterController@showRegisterForm']);

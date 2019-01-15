@@ -86,6 +86,7 @@
             <a href="/inscription">Subscribe</a>
             <a href="/login">Connection</a>
             <a href="/register">Inscription</a>
+            <a href="/app">App</a>
 
 
         </div>

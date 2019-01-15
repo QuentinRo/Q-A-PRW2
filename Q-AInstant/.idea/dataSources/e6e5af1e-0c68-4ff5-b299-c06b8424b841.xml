@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="Q&amp;AInstant">
+<dataSource name="QaBase">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
     <root id="1">
       <ServerVersion>5.5.5</ServerVersion>
@@ -1044,7 +1044,6 @@ survey_id</ColNames>
     <column id="260" parent="245" name="name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="261" parent="245" name="description">
@@ -1052,77 +1051,97 @@ survey_id</ColNames>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="262" parent="245" name="PRIMARY">
+    <column id="262" parent="245" name="created_at">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="263" parent="245" name="update_at">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="264" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="263" parent="246" name="user_id">
+    <column id="265" parent="246" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="246" name="survey_id">
+    <column id="266" parent="246" name="survey_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="265" parent="246" name="fk_users_has_surveys_users_idx">
+    <index id="267" parent="246" name="fk_users_has_surveys_users_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="266" parent="246" name="fk_users_has_surveys_surveys1_idx">
+    <index id="268" parent="246" name="fk_users_has_surveys_surveys1_idx">
       <ColNames>survey_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="267" parent="246" name="PRIMARY">
+    <key id="269" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 survey_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="268" parent="246" name="fk_users_has_surveys_users">
+    <foreign-key id="270" parent="246" name="fk_users_has_surveys_users">
       <ColNames>user_id</ColNames>
       <RefSchemaName>QAbase</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="269" parent="246" name="fk_users_has_surveys_surveys1">
+    <foreign-key id="271" parent="246" name="fk_users_has_surveys_surveys1">
       <ColNames>survey_id</ColNames>
       <RefSchemaName>QAbase</RefSchemaName>
       <RefTableName>surveys</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="270" parent="247" name="id">
+    <column id="272" parent="247" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="247" name="name">
+    <column id="273" parent="247" name="name">
       <Position>2</Position>
       <DataType>tinytext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="247" name="password">
+    <column id="274" parent="247" name="email">
       <Position>3</Position>
       <DataType>tinytext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="247" name="email">
+    <column id="275" parent="247" name="password">
       <Position>4</Position>
       <DataType>tinytext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="247" name="remember_token">
+    <column id="276" parent="247" name="updated_at">
       <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="277" parent="247" name="created_at">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="247" name="remember_token">
+      <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="275" parent="247" name="PRIMARY">
+    <key id="279" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
