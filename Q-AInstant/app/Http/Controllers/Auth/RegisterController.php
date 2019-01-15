@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
-use Illuminate\Support\Facades\Auth;
-
 
 class RegisterController extends Controller
 {
@@ -58,7 +56,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance    after a valid registration.
+     * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
@@ -70,14 +68,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-    public function showRegisterForm()
-    {
-        return view('register');
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('guard-name');
     }
 }
