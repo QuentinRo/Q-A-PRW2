@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="df27dd61-0ad0-4ff0-a9fd-748e78884a7b" name="dvm" url="http://dvm">
+      <webServer id="c5ada706-4551-47ee-8428-a02503bbf386" name="dvm" url="http://dvm">
         <fileTransfer host="dvm" port="22" rootFolder="/var/www" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
