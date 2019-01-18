@@ -15,34 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/inscription', function (){
-   return view('inscription');
-});
-
-// Route::get('/inscription', 'InscriptionController@index');
-
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-//$this->post('/login', 'Auth\LoginController@login');
-
-//$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-
-//Auth::routes();
-//Route::get('/login', 'Auth\LoginController@showLoginForm');
-
-
-Route::get('/app', function (){
-    return view('app');
+Route::get('addSurvey', function (){
+   return view('addSurvey');
 });
 
-Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('addSurvey/create','SurveyController@create');
 
-Route::get('/register', [ 'as' => 'register', 'uses' => 'Auth\RegisterController@showRegisterForm']);
 
-Route::get('/verification', [ 'as' => 'verification', 'uses' => 'Auth\VerificationController@showVerificationForm']);
-//Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\RegisterController@showLoginForm']);
-
-Route::get('/home', 'HomeController@index')->name('home');
