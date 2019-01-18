@@ -8,7 +8,7 @@
                     <div class="card-header">Ajouter un questionnaire</div>
 
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST" action="addSurvey/create">
                             @csrf
 
                             <div class="form-group row">
@@ -38,7 +38,6 @@
                                     @endif
                                 </div>
                             </div>
-
 
 
                             <div class="form-group row mb-0">
