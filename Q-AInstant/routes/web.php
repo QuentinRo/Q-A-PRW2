@@ -25,4 +25,6 @@ Route::get('addSurvey', function (){
 
 Route::post('addSurvey/create','SurveyController@create');
 
+Route::get('teacher', 'SurveyController@index');
+
 

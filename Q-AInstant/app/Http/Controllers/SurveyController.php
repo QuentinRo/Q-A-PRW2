@@ -14,8 +14,8 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        // $surveys = Survey::All();
-        // return view)with->$survey
+        $surveys = Survey::All();
+        return view('teacher')->with($surveys);
     }
 
     /**
@@ -25,11 +25,21 @@ class SurveyController extends Controller
      */
     public function create(Request $request)
     {
+        // https://stackify.com/laravel-eloquent-tutorial/
         $survey = new Survey;
         $survey->name = $request->name;
         $survey->description = $request->description;
 
         $survey->save();
+
+        /* or try this ?
+        Survey::create(array(
+            'name' => $survey->name,
+            'description' => $survey->description,
+            'created_at' => time(),
+            'update_at' => time()
+        ));
+        */
         return redirect('addSurvey');
     }
 
@@ -41,7 +51,9 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //select a table of all the surveys
+        $surveys = surveys::all;
+        return view('teacher')->with($surveys);
     }
 
     /**
@@ -52,7 +64,8 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
-        //
+        //$survey = surveys::where('id', "=", "$id")->first();
+        $survey = surveys::where('id', "=", "$id");
     }
 
     /**
