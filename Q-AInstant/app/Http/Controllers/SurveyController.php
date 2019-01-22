@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Question;
 use App\Survey;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class SurveyController extends Controller
     public function index()
     {
         $surveys = Survey::All();
-        return view('teacher')->with($surveys);
+        return view('teacher')->with('surveys', $surveys);
     }
 
     /**
@@ -53,7 +55,7 @@ class SurveyController extends Controller
     {
         //select a table of all the surveys
         $surveys = surveys::all;
-        return view('teacher')->with($surveys);
+        return view('teacher')->with('surveys', $surveys);
     }
 
     /**
@@ -74,6 +76,17 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function results($id){
+
+        //return the survey with all his questions and answers
+
+        $surveys = Survey::where('id', "=", $id)->first();
+        $questions = Question::where('survey_id', "=", $id)->get();
+        $idquestion = Question::where('survey_id', "=", $id)->first();
+        $answers = Answer::where('question_id', "=", "$idquestion->id")->get();
+        return view ('resultSurvey')->with('surveys', $surveys)->with('questions', $questions)->with('answers', $answers)->with('idq', $idquestion);
+    }
+
     public function edit($id)
     {
         //
