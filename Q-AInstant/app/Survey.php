@@ -10,7 +10,7 @@ class Survey extends Model
 
     // define the name on the DTB
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = 'update_at';
 
     protected $fillable = ['name', 'open'];
 }
