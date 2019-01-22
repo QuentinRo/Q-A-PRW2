@@ -23,8 +23,10 @@ Route::get('addSurvey', function (){
    return view('addSurvey');
 });
 
-Route::post('addSurvey/create','SurveyController@create');
+Route::post('/addSurvey','SurveyController@create');
 
-Route::get('teacher', 'SurveyController@index');
+Route::get('/teacher', 'SurveyController@index');
+
+Route::get('/resultSurvey/{id}','SurveyController@editindex');
 
 
