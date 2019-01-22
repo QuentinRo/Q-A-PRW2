@@ -51,10 +51,25 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function createindex(){
+        $QuestionNumber = 1;
+        return view('addSurvey')->with('Qn', $QuestionNumber);
+    }
+
     public function store(Request $request)
     {
-        //select a table of all the surveys
-        $surveys = surveys::all;
+        //create a new survey and all his questions
+
+        $survey = new Survey;
+        $survey->name = $request->name;
+
+        //foreach Qnumber stock la question dans le tableau -> store ?
+        // check les relations pour stocker les questions
+
+        $survey->save();
+
+        $surveys = Survey::all();
         return view('teacher')->with('surveys', $surveys);
     }
 
@@ -70,12 +85,7 @@ class SurveyController extends Controller
         $survey = surveys::where('id', "=", "$id");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function results($id){
 
         //return the survey with all his questions and answers
