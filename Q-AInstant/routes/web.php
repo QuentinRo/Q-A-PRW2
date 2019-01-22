@@ -19,14 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('addSurvey', function (){
-   return view('addSurvey');
-});
-
-Route::post('/addSurvey','SurveyController@create');
+Route::get('/addSurvey','SurveyController@createindex');
+Route::post('/addSurvey/create','SurveyController@store');
 
 Route::get('/teacher', 'SurveyController@index');
 
-Route::get('/resultSurvey/{id}','SurveyController@editindex');
+Route::get('/resultSurvey/{id}','SurveyController@results');
 
 
