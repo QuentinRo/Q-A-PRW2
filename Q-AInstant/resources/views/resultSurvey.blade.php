@@ -11,7 +11,12 @@
                     {{$answer->answer}} <br>
                 @endforeach
             @endforeach
-
+            <form action="/openSurvey/{{$surveys->id}}">
+                <input type="submit" value="Ouvrir" />
+            </form>
+            <form action="/closeSurvey/{{$surveys->id}}">
+                <input type="submit" value="Fermer" />
+            </form>
         </div>
 
     </div>

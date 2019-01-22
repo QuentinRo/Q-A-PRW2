@@ -19,7 +19,19 @@ class SurveyController extends Controller
         $surveys = Survey::All();
         return view('teacher')->with('surveys', $surveys);
     }
+    public function open($id){
 
+        Survey::where('id', '=', $id)->first()->update(['open' => 1]);
+        $this->results($id);
+
+    }
+
+    public function close($id){
+
+
+        Survey::where('id', '=', $id)->first()->update(['open' => 0]);
+        $this->results($id);
+    }
     /**
      * Show the form for creating a new resource.
      *
