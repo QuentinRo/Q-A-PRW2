@@ -23,3 +23,7 @@ Configurer la base de donnée sur votre serveur. Le fichier se trouve dans "Data
 configurez le fichier .env pour donner l'accés à votre nouvelle base de donnée
 
 Il n'y à pas encore de seed. Mais vous pouvez dés à présent tester l'application sur votre poste.
+
+## Utilisation de l'application
+
+les pages de l'administrateur ne comprennent pas de liens. Mais peuvent être accédées en ajoutant `/teacher` à L'url
