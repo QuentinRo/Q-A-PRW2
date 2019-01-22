@@ -8,9 +8,8 @@
                     <div class="card-header">Ajouter un questionnaire</div>
 
                     <div class="card-body">
-                        <form method="POST" action="addSurvey/create">
+                        <form method="POST" action="/addSurvey/create">
                             @csrf
-
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
 
@@ -24,21 +23,17 @@
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="card-header">Ajouter les questions</div>
+                            <br>
                             <div class="form-group row">
-                                <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
+
+                                <label for="Q{{$Qn}}" class="col-md-4 col-form-label text-md-right">Question {{$Qn}}</label>
 
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="{{$Qn}}" required autofocus>
 
-                                    @if ($errors->has('description'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
-
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

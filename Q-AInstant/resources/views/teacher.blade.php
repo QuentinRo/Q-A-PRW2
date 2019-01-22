@@ -18,7 +18,9 @@
                 <tr></tr>
             @endforeach
         </table>
-        <button class="button">Nouveau</button>
+        <form action="/addSurvey">
+            <input type="submit" value="Nouveau" />
+        </form>
     </div>
 
 @endsection
