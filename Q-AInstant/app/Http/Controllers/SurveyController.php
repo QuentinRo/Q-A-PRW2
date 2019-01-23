@@ -16,21 +16,43 @@ class SurveyController extends Controller
      */
     public function index()
     {
+
         $surveys = Survey::All();
         return view('teacher')->with('surveys', $surveys);
     }
     public function open($id){
 
-        Survey::where('id', '=', $id)->first()->update(['open' => 1]);
-        $this->results($id);
 
+        $open = Survey::where('open', '1')->first();
+
+        if($open == 1)
+        {
+            return redirect('/teacher');
+        }
+        else{
+            Survey::where('id', '=', $id)->first()->update(['open' => 1]);
+            return redirect('/teacher');
+        }
+        /*
+        if(Survey::where('open', "=", '1'))
+        {
+            return redirect('/teacher');
+        }
+        else {
+            Survey::where('id', '=', $id)->first()->update(['open' => 1]);
+            return redirect('/teacher');
+        }
+*/
     }
 
     public function close($id){
 
 
         Survey::where('id', '=', $id)->first()->update(['open' => 0]);
-        $this->results($id);
+        //
+        return redirect('/teacher');
+        //self::results($id);
+        //return view('')
     }
     /**
      * Show the form for creating a new resource.
@@ -39,6 +61,10 @@ class SurveyController extends Controller
      */
     public function create(Request $request)
     {
+
+        //Faire un tableau contenant toutes les questions et les parcourires avec un foreach ?
+        // ou je sais pas. faire mieux ? :)
+
         // https://stackify.com/laravel-eloquent-tutorial/
         $survey = new Survey;
         $survey->name = $request->name;
@@ -91,10 +117,18 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+
+    public function show()
     {
-        //$survey = surveys::where('id', "=", "$id")->first();
-        $survey = surveys::where('id', "=", "$id");
+        $survey = Survey::where('open','1')->first();
+        $questions = Question::where('survey_id', $survey->id)->get();
+        return view('doSurvey')->with('survey', $survey)->with('questions', $questions);
+    }
+
+    public function answer(Request $request)
+    {
+
     }
 
 
