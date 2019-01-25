@@ -23,4 +23,5 @@ Route::get('/teacher', 'SurveyController@index');
 
 Route::get('/resultSurvey/{id}','SurveyController@results');
 
+Route::post('/answerSurvey','SurveyController@answer');
 
