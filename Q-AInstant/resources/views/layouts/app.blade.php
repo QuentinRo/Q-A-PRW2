@@ -42,5 +42,8 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- JS-->
+    <script src="../../js/jquery/dist/jquery.min.js"></script>
 </body>
 </html>
