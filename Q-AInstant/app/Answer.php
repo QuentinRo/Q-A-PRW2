@@ -8,4 +8,6 @@ class Answer extends Model
 {
     //
     protected $fillable = ['answer', 'client'];
+
+    public $timestamps = false;
 }
