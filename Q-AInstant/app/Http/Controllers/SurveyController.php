@@ -6,6 +6,8 @@ use App\Answer;
 use App\Question;
 use App\Survey;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\String_;
+use PHPUnit\Framework\Constraint\Attribute;
 
 class SurveyController extends Controller
 {
@@ -68,7 +70,9 @@ class SurveyController extends Controller
         // https://stackify.com/laravel-eloquent-tutorial/
         $survey = new Survey;
         $survey->name = $request->name;
-        $survey->description = $request->description;
+
+
+        //$survey->description = $request->description;
 
         $survey->save();
 
@@ -95,6 +99,8 @@ class SurveyController extends Controller
         return view('addSurvey')->with('Qn', $QuestionNumber);
     }
 
+
+    // all the honor are given to "Jarodo Mexico, the best Bro"
     public function store(Request $request)
     {
         //create a new survey and all his questions
@@ -104,20 +110,19 @@ class SurveyController extends Controller
 
         //foreach Qnumber stock la question dans le tableau -> store ?
         // check les relations pour stocker les questions
+        $questions = 0;
+        $test = $request->question;
+        foreach ($test as $question)
+        {
+            // ajout dans la BDDDDDD :DDDDDDDD :) MERCI JARODO MEXICO :D
 
+        }
+        dd($questions);
         $survey->save();
 
         $surveys = Survey::all();
         return view('teacher')->with('surveys', $surveys);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function show()
     {
@@ -129,6 +134,15 @@ class SurveyController extends Controller
     public function answer(Request $request)
     {
 
+        foreach($request->answer as $key=>$question)
+        {
+            // ajout des questions dans la BDD
+            $answer = new Answer;
+            $answer->question_id = $key;
+            $answer->answer = $question;
+            $answer->save();
+        }
+       // dd($question);
     }
 
 
@@ -138,9 +152,12 @@ class SurveyController extends Controller
 
         $surveys = Survey::where('id', "=", $id)->first();
         $questions = Question::where('survey_id', "=", $id)->get();
-        $idquestion = Question::where('survey_id', "=", $id)->first();
-        $answers = Answer::where('question_id', "=", "$idquestion->id")->get();
-        return view ('resultSurvey')->with('surveys', $surveys)->with('questions', $questions)->with('answers', $answers)->with('idq', $idquestion);
+
+        foreach($questions as $question) {
+            $answers[$question->id] = Answer::where('question_id', '=', $question->id)->get();
+        }
+        //dd($answers);
+        return view ('resultSurvey')->with('surveys', $surveys)->with('questions', $questions)->with('answers', $answers);
     }
 
     public function edit($id)
