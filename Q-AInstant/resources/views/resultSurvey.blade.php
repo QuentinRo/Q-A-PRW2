@@ -7,8 +7,15 @@
 
             @foreach($questions as $question)
                 <h3>{{$question->entitled}}</h3>
-                @foreach($answers as $answer)
-                    {{$answer->answer}} <br>
+                @foreach($answers as $key=>$answer)
+                    @foreach($answer as $answ)
+                       @if ($question->id == $answ->question_id)
+
+                           {{$answ->answer}} <br>
+
+                        @endif
+                        @endforeach
+
                 @endforeach
             @endforeach
             <form action="/openSurvey/{{$surveys->id}}">
