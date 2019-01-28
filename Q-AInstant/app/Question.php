@@ -8,4 +8,6 @@ class Question extends Model
 {
     //
     protected $fillable = ['entitled'];
+
+    public $timestamps = false;
 }
