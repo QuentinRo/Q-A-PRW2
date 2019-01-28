@@ -107,21 +107,28 @@ class SurveyController extends Controller
 
         $survey = new Survey;
         $survey->name = $request->name;
+        $survey->save();
+
+        foreach ($request->question as $entitled)
+        {
+            $question = new Question;
+            $question->entitled = $entitled;
+            $question->survey_id = $survey->id;
+            $question->save();
+        }
+
+
+        // have all the question in a table
+
 
         //foreach Qnumber stock la question dans le tableau -> store ?
         // check les relations pour stocker les questions
-        $questions = 0;
-        $test = $request->question;
-        foreach ($test as $question)
-        {
-            // ajout dans la BDDDDDD :DDDDDDDD :) MERCI JARODO MEXICO :D
 
-        }
-        dd($questions);
-        $survey->save();
 
-        $surveys = Survey::all();
-        return view('teacher')->with('surveys', $surveys);
+        //$survey->save();
+
+        //$surveys = Survey::all();
+      //return view('teacher')->with('surveys', $surveys);
     }
 
     public function show()
@@ -142,7 +149,8 @@ class SurveyController extends Controller
             $answer->answer = $question;
             $answer->save();
         }
-       // dd($question);
+
+        return redirect('/');
     }
 
 
@@ -156,7 +164,7 @@ class SurveyController extends Controller
         foreach($questions as $question) {
             $answers[$question->id] = Answer::where('question_id', '=', $question->id)->get();
         }
-        //dd($answers);
+
         return view ('resultSurvey')->with('surveys', $surveys)->with('questions', $questions)->with('answers', $answers);
     }
 
