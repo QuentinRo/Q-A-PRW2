@@ -1,0 +1,5 @@
+{
+    "require": {
+        "appstract/laravel-blade-directives": "^1.3"
+    }
+}
