@@ -1,5 +1,6 @@
 @extends('layouts.app')
-<script type="text/javascript"> src="js/test.js" </script>
+
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -8,7 +9,7 @@
                     <div class="card-header">Ajouter un questionnaire</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/addSurvey/create">
+                        <form method="POST" id="myform" action="/addSurvey/create">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
@@ -25,30 +26,27 @@
                             </div>
                             <div class="card-header">Ajouter les questions</div>
                             <br>
-                                <div class="form-group row">
+                                <div id="questionaire" class="form-group row">
 
                                     <label for="Q{{$Qn}}" class="col-md-4 col-form-label text-md-right">Question {{$Qn}}</label>
 
                                     <div class="col-md-6">
                                         <input id="question" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="question[]" required autofocus>
-
                                     </div>
                                 </div>
-                            <div class="form-group row">
 
-                                <label for="Q{{$Qn}}" class="col-md-4 col-form-label text-md-right">Question {{$Qn}}</label>
-
-                                <div class="col-md-6">
-                                    <input id="question" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="question[]" required autofocus>
-
-                                </div>
-                            </div>
 
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-2 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         Créer
+                                    </button>
+                                </div>
+
+                                <div class="col-md-2 offset-md-2">
+                                    <button id="add" class="btn btn-primary">
+                                        Ajouter
                                     </button>
                                 </div>
                             </div>
@@ -59,3 +57,4 @@
         </div>
     </div>
 @endsection
+
