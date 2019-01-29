@@ -26,15 +26,14 @@
                             </div>
                             <div class="card-header">Ajouter les questions</div>
                             <br>
-                                <div id="questionaire" class="form-group row">
+                                <div id="questionaire" class="form-group row test">
 
-                                    <label for="Q{{$Qn}}" class="col-md-4 col-form-label text-md-right">Question {{$Qn}}</label>
+                                    <label for="Q{{$Qn}}" class="col-md-4 col-form-label text-md-right">Question <label id="Qnumber">1</label></label>
 
                                     <div class="col-md-6">
-                                        <input id="question" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="question[]" required autofocus>
+                                        <input id="question" type="text" class="form-control" name="question[]" required autofocus>
                                     </div>
                                 </div>
-
 
 
                             <div class="form-group row mb-0">

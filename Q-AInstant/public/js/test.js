@@ -1,9 +1,23 @@
 $(document).ready(function() {
     // adding row
+    i=1;
+
     $("#add").click(function(){
-       $("#myform #questionaire:last").clone(true).insertAfter("#myform #questionaire:last");
-       return false;
+        if (i <= 10)
+        {
+            $("#questionaire").last().clone().insertAfter("#questionaire").last();
+            i++;
+            $("#Qnumber").text(i);
+
+            return false;
+            console.log(test);
+        }else
+        {
+            //show error message
+        }
     });
+
+
 
 
 });
