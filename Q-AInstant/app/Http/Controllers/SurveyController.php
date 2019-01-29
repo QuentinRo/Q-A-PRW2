@@ -20,14 +20,27 @@ class SurveyController extends Controller
     {
 
         $surveys = Survey::All();
-        return view('teacher')->with('surveys', $surveys);
+        foreach ($surveys as $survey)
+        {
+            $questions = Question::where('survey_id', '=',$survey->id)->get();
+
+            foreach ($questions as $question)
+            {
+                $answers[$survey->id] = Answer::where('question_id', '=', $question->id)->count();
+            }
+           // pour chaque tableau, liste les questions
+
+                //pour chaque question, compte les réponses
+            // $Acompter = Answer::where('question_id', '=', )->count();
+        }
+
+        return view('teacher')->with('surveys', $surveys)->with('nbanswers', $answers);
     }
     public function open($id){
 
-
         $open = Survey::where('open', '1')->first();
 
-        if($open == 1)
+        if($open != null)
         {
             return redirect('/teacher');
         }
@@ -35,17 +48,7 @@ class SurveyController extends Controller
             Survey::where('id', '=', $id)->first()->update(['open' => 1]);
             return redirect('/teacher');
         }
-        /*
-        if(Survey::where('open', "=", '1'))
-        {
-            return redirect('/teacher');
-        }
-        else {
-            Survey::where('id', '=', $id)->first()->update(['open' => 1]);
-            return redirect('/teacher');
-        }
-*/
-    }
+     }
 
     public function close($id){
 
@@ -117,6 +120,7 @@ class SurveyController extends Controller
             $question->save();
         }
 
+        return redirect('/teacher');
 
         // have all the question in a table
 
@@ -135,6 +139,7 @@ class SurveyController extends Controller
     {
         $survey = Survey::where('open','1')->first();
         $questions = Question::where('survey_id', $survey->id)->get();
+
         return view('doSurvey')->with('survey', $survey)->with('questions', $questions);
     }
 
@@ -164,6 +169,7 @@ class SurveyController extends Controller
         foreach($questions as $question) {
             $answers[$question->id] = Answer::where('question_id', '=', $question->id)->get();
         }
+
 
         return view ('resultSurvey')->with('surveys', $surveys)->with('questions', $questions)->with('answers', $answers);
     }
