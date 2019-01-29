@@ -1,20 +1,31 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content">
-        <div class="title m-b-md">
-            <form method="POST" action="/answerSurvey">
-                @csrf
-            <h1>{{$survey->name}}</h1>
-            @foreach($questions as $question)
-                    {{$question->id}}
-                {{$question->entitled}}
-                    <input type="text" data-qid=""  class="" name="answer[{{$question->id}}]">
-            <br>
-            @endforeach
-                <button  type="submit" class="btn btn-primary">Soumettre</button>
-            </form>
-        </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{$survey->name}}</div>
 
+                    <div class="card-body">
+                        <form method="POST" action="/answerSurvey">
+                            @csrf
+                            <div class="form-group row">
+                        @foreach($questions as $question)
+
+                                    <label for="answer" class="col-md-4 col-form-label text-md-right">{{$question->entitled}}</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="answer[{{$question->id}}]">
+                                </div>
+                            <br><br>
+                        @endforeach
+                            </div>
+                            <button  type="submit" class="btn btn-primary col-md-2 offset-md-8">Soumettre</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
