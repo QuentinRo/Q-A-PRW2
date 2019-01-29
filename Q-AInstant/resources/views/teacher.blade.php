@@ -1,26 +1,23 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content">
-        <div class="title m-b-md">
-            Teacher page
-        </div>
+<div class="container">
 
-        <table>
+        <table class="table">
             <tr>Nom</tr>
-            <tr>Date</tr>
-            <tr>Réponse</tr>
+            <tr>Date de création</tr>
+            <tr>NB Réponses</tr>
             <tr>Statut</tr>
             @foreach($surveys as $survey)
-                <td><a href="/resultSurvey/{{$survey->id}}">{{$survey->name}}</a></td>
+                <td class="tab-content"><a href="/resultSurvey/{{$survey->id}}">{{$survey->name}}</a></td>
                 <td>{{$survey->created_at}}</td>
-                <td></td>
+                <td>{{$nbanswers[$survey->id]}}</td>
                 <td>{{$survey->open}}</td>
                 <tr></tr>
             @endforeach
         </table>
         <form action="/addSurvey">
-            <input type="submit" value="Nouveau" />
+            <input class="btn btn-primary" type="submit" value="Nouveau" />
         </form>
-    </div>
 
+</div>
 @endsection
