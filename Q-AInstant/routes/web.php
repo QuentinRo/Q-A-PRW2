@@ -23,6 +23,8 @@ Route::get('/resultSurvey/{id}','SurveyController@results');
 
 Route::get('/addSurvey','SurveyController@createindex');
 Route::post('/addSurvey/create','SurveyController@store');
+Route::delete('/delSurvey/{id}','SurveyController@delete');
+
 
 // close and open the survey
 Route::get('/openSurvey/{id}','SurveyController@open');

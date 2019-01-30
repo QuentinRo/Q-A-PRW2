@@ -13,6 +13,17 @@
                 <td>{{$survey->created_at}}</td>
                 <td>{{$nbanswers[$survey->id]}}</td>
                 <td>{{$survey->open}}</td>
+                <td>
+                    <form method="post" action="/delSurvey/{{$survey->id}}">
+                        @csrf
+                        @method("DELETE")
+                        <div class="col-md-2 offset-2 ">
+                            <input type="submit" class="btn btn-primary" value="Delete" />
+                        </div>
+                    </form>
+
+                </td>
+
                 </tr>
             @endforeach
         </table>
