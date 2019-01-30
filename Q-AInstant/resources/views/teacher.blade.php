@@ -18,7 +18,7 @@
                         @csrf
                         @method("DELETE")
                         <div class="col-md-2 offset-2 ">
-                            <input type="submit" class="btn btn-primary" value="Delete" />
+                            <input type="submit" class="btn btn-primary" value="Supprimer" />
                         </div>
                     </form>
 
