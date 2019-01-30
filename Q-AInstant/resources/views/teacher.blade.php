@@ -3,16 +3,17 @@
 <div class="container">
 
         <table class="table">
-            <tr>Nom</tr>
-            <tr>Date de création</tr>
-            <tr>NB Réponses</tr>
-            <tr>Statut</tr>
+            <th class="">Nom</th>
+            <th>Date de création</th>
+            <th>NB Réponses</th>
+            <th>Statut</th>
             @foreach($surveys as $survey)
+                <tr>
                 <td class="tab-content"><a href="/resultSurvey/{{$survey->id}}">{{$survey->name}}</a></td>
                 <td>{{$survey->created_at}}</td>
                 <td>{{$nbanswers[$survey->id]}}</td>
                 <td>{{$survey->open}}</td>
-                <tr></tr>
+                </tr>
             @endforeach
         </table>
         <form action="/addSurvey">
