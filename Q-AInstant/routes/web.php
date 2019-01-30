@@ -11,17 +11,22 @@
 |
 */
 
+// User views ------------------------------------------------
 Route::get('/', 'SurveyController@show');
+
+Route::post('/answerSurvey','SurveyController@answer');
+// -----------------------------------------------------------
+
+// teacher views -------------------------------------------------
+Route::get('/teacher', 'SurveyController@index');
+Route::get('/resultSurvey/{id}','SurveyController@results');
 
 Route::get('/addSurvey','SurveyController@createindex');
 Route::post('/addSurvey/create','SurveyController@store');
 
+// close and open the survey
 Route::get('/openSurvey/{id}','SurveyController@open');
 Route::get('/closeSurvey/{id}','SurveyController@close');
+//----------------------------------------------------------------
 
-Route::get('/teacher', 'SurveyController@index');
-
-Route::get('/resultSurvey/{id}','SurveyController@results');
-
-Route::post('/answerSurvey','SurveyController@answer');
 
