@@ -17,12 +17,12 @@ Créez une copie du fichier .env.example <br>
 `cp .env.example .env`
 
 Genérez une clé de l'application <br>
-`php artisan key:generate`s
+`php artisan key:generate`
 
 Configurer la base de donnée sur votre serveur. Le fichier se trouve dans "Database/**QAbase.sql**" <br>
 configurez le fichier .env pour donner l'accés à votre nouvelle base de donnée
 
-Il n'y à pas encore de seed. Mais vous pouvez dés à présent tester l'application sur votre poste.
+L'application ne nécessite pas de données de base afin de fonctionner 
 
 ## Utilisation de l'application
 
