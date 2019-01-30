@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
-
+@section('js')
+    <script src="js/AddQuestion.js"></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
