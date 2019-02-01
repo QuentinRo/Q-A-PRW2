@@ -12,5 +12,5 @@ class Survey extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'update_at';
 
-    protected $fillable = ['name', 'open'];
+    protected $fillable = ['name', 'open', 'oneShotReset'];
 }

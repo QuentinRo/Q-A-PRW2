@@ -16,6 +16,40 @@ class Survey
     private $name;
     private $description;
     private $open;
+    private $oneShotReset;
+
+    /**
+     * Survey constructor.
+     * @param $id
+     * @param $name
+     * @param $description
+     * @param $open
+     * @param $oneShotReset
+     */
+    public function __construct($id, $name, $description, $open, $oneShotReset)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->open = $open;
+        $this->oneShotReset = $oneShotReset;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOneShotReset()
+    {
+        return $this->oneShotReset;
+    }
+
+    /**
+     * @param mixed $oneShotReset
+     */
+    public function setOneShotReset($oneShotReset): void
+    {
+        $this->oneShotReset = $oneShotReset;
+    }
 
 
     /**
@@ -25,13 +59,6 @@ class Survey
      * @param $description
      * @param $open
      */
-    public function __construct($id, $name, $description, $open)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->open = $open;
-    }
 
     /**
      * @return mixed
