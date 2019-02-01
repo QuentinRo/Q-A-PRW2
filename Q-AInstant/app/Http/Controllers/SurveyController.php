@@ -63,9 +63,11 @@ class SurveyController extends Controller
      */
     public function create(Request $request)
     {
+
         $survey = new Survey;
         $survey->name = $request->name;
         $survey->save();
+
 
         return redirect('addSurvey');
     }
@@ -84,9 +86,10 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         //create a new survey and all his questions
-
+        $oneShotReset = rand(0000,9999);
         $survey = new Survey;
         $survey->name = $request->name;
+        $survey->oneShotReset = $oneShotReset;
         $survey->save();
 
         foreach ($request->question as $entitled) {
@@ -101,25 +104,51 @@ class SurveyController extends Controller
     }
 
     // Show the "Open" Survey, to answer
-    public function show()
+    /* BUG
+    Only the first question are checked if you have already answer it.
+    It's int the if part.
+
+    idea for resolve the bug : check if the $answer array is empty, if yes, don't enter in the foreach
+        (if you try to remove the if(isset($answer[$key]) ). It will working but add an other bug :
+        Error offset 0 if you don't have answers the survey.
+    */
+    public function show(Request $request)
     {
         $survey = Survey::where('open', '1')->first();
-
         if ($survey == null) {
             return view('doSurvey')->with('survey', $survey);
-        } else {
-            $questions = Question::where('survey_id', $survey->id)->get();
-            return view('doSurvey')->with('survey', $survey)->with('questions', $questions);
         }
+            $questions = Question::where('survey_id', $survey->id)->get();
+
+            foreach ($questions as $question)
+            {
+                $answers[] = Answer::where('question_id', '=', $question->id)->where('client', '=', $request->getClientIp())->get();
+            }
+            foreach ($answers as $key => $answer)
+            {
+                // check only if the first answer is answered by the same ip
+                if(isset($answer[$key]) )
+                {
+                    if ($answer[$key]->client != null)
+                    {
+                        return view('alreadyDone');
+                    }
+                }
+
+            }
+            return view('doSurvey')->with('survey', $survey)->with('questions', $questions);
+
     }
 
     // Save all the answers of the current survey
     public function answer(Request $request)
     {
+        $ip = $request->getClientIp();
+
         foreach ($request->answer as $key => $question) {
             $answer = new Answer;
             $answer->question_id = $key;
-
+            $answer->client = $ip;
             if ($question == null) {
                 continue;
             } else {
@@ -127,8 +156,9 @@ class SurveyController extends Controller
                 $answer->save();
             }
         }
+        $thanksmessage = "Merci d'avoir répondu au questionnaire";
 
-        return redirect('/');
+        return view('thanks')->with('thanks', $thanksmessage);
     }
 
     //return the survey with all his questions and answers
@@ -159,4 +189,24 @@ class SurveyController extends Controller
         return redirect('teacher');
     }
 
+    // delete questions of the same client, and reload a new code to reset answers
+    public function delAnswers(Request $request)
+    {
+        $codesurvey = $open = Survey::where('open', '1')->first();
+
+        if ($request->code == $codesurvey->oneShotReset)
+        {
+             Answer::where('client', '=', $request->getClientIp())->delete();
+             // change the code of survey
+            $oneShotReset = rand(0000,9999);
+            Survey::where('open', '1')->update(['oneShotReset'=> $oneShotReset]);
+
+            return redirect('/');
+        }else
+        {
+            return view('alreadyDone');
+        }
+
+
+    }
 }
