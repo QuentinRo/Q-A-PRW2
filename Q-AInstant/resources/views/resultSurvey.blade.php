@@ -5,6 +5,7 @@
             <div class="col-md-8">
                 <div class="title m-b-md">
                     <h2>{{$surveys->name}}</h2>
+                    <h2>Code : {{$surveys->oneShotReset}}</h2>
                     <h3>{{$surveys->created_at}}</h3>
 
                     @foreach($questions as $question)
