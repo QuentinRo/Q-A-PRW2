@@ -15,6 +15,8 @@
 Route::get('/', 'SurveyController@show');
 
 Route::post('/answerSurvey','SurveyController@answer');
+Route::get('/thanks', 'SurveyController@thanks');
+Route::delete('/delAnswers', 'SurveyController@delAnswers');
 // -----------------------------------------------------------
 
 // teacher views -------------------------------------------------
